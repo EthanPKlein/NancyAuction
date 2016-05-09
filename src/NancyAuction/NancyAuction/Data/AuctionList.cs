@@ -5,12 +5,17 @@ namespace NancyAuction.Data
 {
     public static class AuctionList
     {
-        public static List<AuctionEntry> AuctionEntries = new List<AuctionEntry>();
+        private static List<AuctionEntry> _auctionEntries = new List<AuctionEntry>();
 
         public static void AddAuctionEntry(AuctionEntry entry)
         {
-            AuctionEntries.Add(entry);
+            _auctionEntries.Add(entry);
         }
+
+        public static List<AuctionEntry> GetAuctionEntries()
+        {
+            return _auctionEntries;
+        } 
 
     }
 }
