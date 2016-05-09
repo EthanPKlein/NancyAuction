@@ -15,6 +15,7 @@ namespace NancyAuction.Models
         {
             this.AuctionItem = auctionItem;
             this.BidStartTime = DateTime.UtcNow;
+            this.BidEndTime = DateTime.UtcNow.AddDays(1);
             this.BidHistory = new BidHistory();
             this.IsOpen = false;
         }
