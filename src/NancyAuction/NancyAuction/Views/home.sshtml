@@ -1,3 +1,9 @@
-﻿<h1>Welcome to Nancy Auction!</h1>
+﻿@Master['master.sshtml']
 
-<p>You can bid on things here.</p>
+@Section['Content']
+<h1>Welcome to Nancy Auction!</h1>
+
+<p>You can bid on things here!</p>
+
+@EndSection
+
