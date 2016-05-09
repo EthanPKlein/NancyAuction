@@ -10,33 +10,15 @@ namespace NancyAuction.Modules
         public AuctionModule()
         {
 
-            Get["/home"] = async (ctx, cx) => {
+            Get["/home"] = _ =>
+            {
                 return View["home.sshtml"];
             };
 
-            Get["/add"] = async (ctx, cx) =>
+            Get["/entries"] = _ =>
             {
-
-                AuctionItem item = new AuctionItem
-                {
-                    AutoBuy = 100,
-                    Id = 100,
-                    Description = "A small white pearl",
-                    StartingBid = 25,
-                    Name = "Small White Pearl",
-                    OwnerName = "Sam Carter"
-                };
-
-                AuctionEntry entry = new AuctionEntry(item)
-                {
-                    IsOpen = true
-                };
-
-                
-
-                AuctionList.AddAuctionEntry(entry);
-
-                return null;
+                var data = AuctionList.GetAuctionEntries();
+                return data;
             };
 
         }
