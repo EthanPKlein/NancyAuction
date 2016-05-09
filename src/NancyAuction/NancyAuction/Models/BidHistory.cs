@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NancyAuction.Models
 {
@@ -21,6 +22,16 @@ namespace NancyAuction.Models
                 BidTime = DateTime.UtcNow
             };
             this.Bids.Add(newbid);
+        }
+
+        public bool HasBids()
+        {
+            return this.Bids.Any();
+        }
+
+        public Bid GetTopBid()
+        {
+            return this.Bids.Last();
         }
     }
 }

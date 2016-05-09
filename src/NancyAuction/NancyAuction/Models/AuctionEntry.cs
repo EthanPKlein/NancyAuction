@@ -11,8 +11,9 @@ namespace NancyAuction.Models
         public DateTime BidEndTime { get; set; }
         public bool IsOpen { get; set; }
 
-        public AuctionEntry()
+        public AuctionEntry(AuctionItem auctionItem)
         {
+            this.AuctionItem = auctionItem;
             this.BidStartTime = DateTime.UtcNow;
             this.BidHistory = new BidHistory();
             this.IsOpen = false;
@@ -20,6 +21,23 @@ namespace NancyAuction.Models
 
         public void AddBid(string bidderName, float bidAmount)
         {
+
+            if (!this.BidHistory.HasBids() && bidAmount < this.AuctionItem.StartingBid)
+            {
+                throw new Exception("bid amount must be greater or equal to the starting bid");
+            }
+
+            if (this.BidHistory.HasBids() && bidAmount <= BidHistory.GetTopBid().BidAmount)
+            {
+                throw new Exception("bid amount must be greater than the last bid");
+            }
+
+            if (bidAmount > this.AuctionItem.AutoBuy)
+            {
+                bidAmount = this.AuctionItem.AutoBuy;
+                this.IsOpen = false;
+            }
+
             this.BidHistory.AddBid(bidderName, bidAmount);
         }
 

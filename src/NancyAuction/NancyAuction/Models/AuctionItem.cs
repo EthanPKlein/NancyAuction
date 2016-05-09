@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public float StartingBid { get; set; }
         public float AutoBuy { get; set; }
+        public string OwnerName { get; set; }
     }
 }
