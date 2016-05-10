@@ -78,6 +78,15 @@ namespace NancyAuctionTests
         }
 
         [Test]
+        public void BidExactlyAtAutoBuyBecomesTopBidAndClosesAuction()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            auctionEntry.AddBid(posterName1, 100);
+            Assert.That(auctionEntry.BidHistory.GetTopBid().BidAmount, Is.EqualTo(100));
+            Assert.That(auctionEntry.IsOpen, Is.False);
+        }
+
+        [Test]
         public void BidMustBeHigherThanStartingBid()
         {
             AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
