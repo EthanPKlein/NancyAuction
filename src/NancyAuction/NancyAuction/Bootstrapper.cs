@@ -50,6 +50,31 @@ namespace NancyAuction
             entry2.AddBid("Laura", 12);
 
             AuctionList.AddAuctionEntry(entry2);
+
+            // import some default auction items
+            AuctionItem item3 = new AuctionItem
+            {
+                AutoBuy = 500,
+                Id = 47,
+                Description = "A frisbee made of solid gold!  Disclaimer:  Does not fly very well.",
+                StartingBid = 100,
+                Name = "Gold Frisbee",
+                OwnerName = "Richard Moneybags"
+            };
+
+            AuctionEntry entry3 = new AuctionEntry(item3)
+            {
+                IsOpen = true
+            };
+
+            entry3.AddBid("Greedo", 150);
+            entry3.AddBid("Han", 175);
+            entry3.AddBid("Greedo", 250);
+            entry3.AddBid("Han", 280);
+            entry3.AddBid("Greedo", 350);
+            entry3.AddBid("Darth Vader", 500);
+
+            AuctionList.AddAuctionEntry(entry3);
         }
     }
 }
