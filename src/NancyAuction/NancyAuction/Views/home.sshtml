@@ -19,7 +19,7 @@
 		@EndIf
 
 		@IfNot.IsOpen
-			<span class='alert alert-danger'>Bidding Closed!</span>
+			<span class='alert alert-danger'>SOLD!</span>
 		@EndIf
 
 		
