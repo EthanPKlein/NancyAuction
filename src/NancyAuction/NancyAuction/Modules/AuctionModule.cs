@@ -12,7 +12,8 @@ namespace NancyAuction.Modules
 
             Get["/home"] = _ =>
             {
-                return View["home.sshtml"];
+                var data = AuctionList.GetAuctionEntries();
+                return View["home.sshtml", data];
             };
 
             Get["/entries"] = _ =>
