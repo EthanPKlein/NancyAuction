@@ -13,13 +13,13 @@ namespace NancyAuction.Models
             this.Bids = new List<Bid>();
         }
 
-        public void AddBid(string BidderName, float Amount)
+        public void AddBid(string BidderName, float Amount, DateTime timestamp)
         {
             Bid newbid = new Bid
             {
                 BidAmount = Amount,
                 BidderName = BidderName,
-                BidTime = DateTime.UtcNow
+                BidTime = timestamp
             };
             this.Bids.Add(newbid);
         }

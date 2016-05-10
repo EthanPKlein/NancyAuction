@@ -20,9 +20,8 @@ namespace NancyAuction.Models
             this.IsOpen = false;
         }
 
-        public void AddBid(string bidderName, float bidAmount)
+        public void AddBid(string bidderName, float bidAmount, DateTime timestamp)
         {
-
             if (!this.BidHistory.HasBids() && bidAmount < this.AuctionItem.StartingBid)
             {
                 throw new Exception("bid amount must be greater or equal to the starting bid");
@@ -39,7 +38,12 @@ namespace NancyAuction.Models
                 this.IsOpen = false;
             }
 
-            this.BidHistory.AddBid(bidderName, bidAmount);
+            this.BidHistory.AddBid(bidderName, bidAmount, timestamp);
+        }
+
+        public void AddBid(string bidderName, float bidAmount)
+        {
+            AddBid(bidderName, bidAmount, DateTime.UtcNow);
         }
 
     }
