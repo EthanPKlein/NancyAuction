@@ -33,7 +33,7 @@ namespace NancyAuction.Models
                 throw new Exception("bid amount must be greater than the last bid");
             }
 
-            if (bidAmount > this.AuctionItem.AutoBuy)
+            if (bidAmount >= this.AuctionItem.AutoBuy)
             {
                 bidAmount = this.AuctionItem.AutoBuy;
                 this.IsOpen = false;
