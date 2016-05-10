@@ -1,0 +1,4 @@
+﻿@Each
+		<p class="bidDetail"><b>@Current.BidderName</b> bid <b>$@Current.BidAmount</b> on @Current.BidTime </p>
+
+@EndEach

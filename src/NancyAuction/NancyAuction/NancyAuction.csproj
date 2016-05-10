@@ -110,6 +110,7 @@
     <Content Include="Views\home.sshtml" />
     <Content Include="Views\master.sshtml" />
     <Content Include="Views\footer.sshtml" />
+    <Content Include="Views\bidlisting.sshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

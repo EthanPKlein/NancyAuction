@@ -3,7 +3,28 @@
 @Section['Content']
 <h1>Welcome to Nancy Auction!</h1>
 
-<p>You can bid on things here!</p>
+<p>We currently have the following listings:</p>
+
+@Each
+	
+	<div class="listingBox">
+		<h3>@Current.AuctionItem.Name</h3>
+		<p>@Current.AuctionItem.Description</p>
+
+		<p>Bid History:</p>
+		@Partial['bidlisting.sshtml', @Current.BidHistory.Bids];
+		
+		@If.IsOpen
+			<a href="#" class="btn btn-primary" role="button">Bid Now!</a>
+		@EndIf
+
+		@IfNot.IsOpen
+			<span class='alert alert-danger'>Bidding Closed!</span>
+		@EndIf
+
+		
+	</div>
+
+@EndEach
 
 @EndSection
-
