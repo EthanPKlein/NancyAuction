@@ -9,7 +9,7 @@
 	
 	<div class="listingBox">
 		<h3>@Current.AuctionItem.Name</h3>
-		<p>@Current.AuctionItem.Description</p>
+		<p>@Current.AuctionItem.Description.  <i>Starting bid:  <b>$@Current.AuctionItem.StartingBid</b>.  Autobuy at <b>$@Current.AuctionItem.AutoBuy</b> </i></p>
 
 		<p>Bid History:</p>
 		@Partial['bidlisting.sshtml', @Current.BidHistory.Bids];
