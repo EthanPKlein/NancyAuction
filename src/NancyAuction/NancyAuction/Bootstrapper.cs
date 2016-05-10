@@ -26,6 +26,9 @@ namespace NancyAuction
                 IsOpen = true
             };
 
+            entry.AddBid("Gary", 30);
+            entry.AddBid("Susan", 35);
+
             AuctionList.AddAuctionEntry(entry);
 
             // import some default auction items
@@ -39,10 +42,12 @@ namespace NancyAuction
                 OwnerName = "Eileen Summers"
             };
 
-            AuctionEntry entry2 = new AuctionEntry(item)
+            AuctionEntry entry2 = new AuctionEntry(item2)
             {
                 IsOpen = true
             };
+
+            entry2.AddBid("Laura", 12);
 
             AuctionList.AddAuctionEntry(entry2);
         }
