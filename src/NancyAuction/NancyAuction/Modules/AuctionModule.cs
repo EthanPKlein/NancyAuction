@@ -13,7 +13,7 @@ namespace NancyAuction.Modules
         public AuctionModule()
         {
 
-            Get["/"] = _ =>
+            Get["frontPage", "/"] = _ =>
             {
                 var data = AuctionList.GetAuctionEntries();
                 return View["home.sshtml", data];
@@ -36,16 +36,16 @@ namespace NancyAuction.Modules
                     AuctionList.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
                 }
 
-                var data = AuctionList.GetAuctionEntries(); // redirect?
-                return View["home.sshtml", data];
+                return Response.AsRedirect("/");
+
             };
 
             Get["/entries/delete/{id}"] = parameters =>
             {
                 int id = parameters.id;
                 AuctionList.DeleteAuctionEntry(id);
-                var data = AuctionList.GetAuctionEntries(); // redirect?
-                return View["home.sshtml", data];
+
+                return Response.AsRedirect("/");
             };
 
             Get["/newEntry"] = _ =>
@@ -67,8 +67,7 @@ namespace NancyAuction.Modules
                     AuctionList.AddAuctionEntry(entry);
                 }
 
-                var data = AuctionList.GetAuctionEntries();
-                return View["home.sshtml", data]; // TODO: redirect to home?
+                return Response.AsRedirect("/");
             };
 
         }
