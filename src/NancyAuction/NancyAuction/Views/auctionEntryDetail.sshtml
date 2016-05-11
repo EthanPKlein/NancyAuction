@@ -3,7 +3,7 @@
 @Section['Content']
 <h1>Auction Entry Detail</h1>
 
-<h3>@Model.AuctionItem.Name  <a class="btn btn-danger btn-sm" href="/entries/delete/@Model.Id">Delete</a></h3>
+<h3>@Model.AuctionItem.Name  <a class="btn btn-danger btn-sm" href="/simpleAuction/entries/delete/@Model.Id">Delete</a></h3>
 
 		<p>@Model.AuctionItem.Description.  <i>Starting bid:  <b>$@Model.AuctionItem.StartingBid</b>.  Autobuy at <b>$@Model.AuctionItem.AutoBuy</b> </i></p>
 

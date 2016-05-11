@@ -8,14 +8,14 @@
 @Each
 	
 	<div class="listingBox">
-		<h3>@Current.AuctionItem.Name  <a class="btn btn-info btn-sm" href="/entries/@Current.Id">Detail</a></h3>
+		<h3>@Current.AuctionItem.Name  <a class="btn btn-info btn-sm" href="/simpleAuction/entries/@Current.Id">Detail</a></h3>
 		<p>@Current.AuctionItem.Description.  <i>Starting bid:  <b>$@Current.AuctionItem.StartingBid</b>.  Autobuy at <b>$@Current.AuctionItem.AutoBuy</b> </i></p>
 
 		<p>Bid History:</p>
 		@Partial['bidlisting.sshtml', @Current.BidHistory.Bids];
 		
 		@If.IsOpen
-			<form action="/bid/" method="post">
+			<form action="/simpleAuction/bid/" method="post">
 
 				<p>Your name: <input type="text" name="BidderName" value = "" required />
 
@@ -38,6 +38,6 @@
 
 @EndEach
 
-<a href="/newEntry/">Post New Auction Entry</a>
+<a href="/simpleAuction/newEntry/">Post New Auction Entry</a>
 
 @EndSection

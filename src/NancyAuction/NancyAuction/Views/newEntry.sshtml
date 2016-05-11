@@ -6,7 +6,7 @@
 
 <h1>Post new Auction Entry</h1>
 
-<form action="/newEntry/" method="post">
+<form action="/simpleAuction/newEntry/" method="post">
     <div id="list"></div>
 
     <a class="btn btn-info" id="addAnother">

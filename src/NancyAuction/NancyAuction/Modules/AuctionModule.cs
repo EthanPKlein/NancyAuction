@@ -10,10 +10,10 @@ namespace NancyAuction.Modules
     public class AuctionModule : NancyModule
     {
 
-        public AuctionModule()
+        public AuctionModule() : base("/simpleAuction")
         {
 
-            Get["frontPage", "/"] = _ =>
+            Get["/"] = _ =>
             {
                 var data = AuctionList.GetAuctionEntries();
                 return View["home.sshtml", data];
@@ -36,7 +36,7 @@ namespace NancyAuction.Modules
                     AuctionList.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
                 }
 
-                return Response.AsRedirect("/");
+                return Response.AsRedirect("/simpleAuction/");
 
             };
 
@@ -45,7 +45,7 @@ namespace NancyAuction.Modules
                 int id = parameters.id;
                 AuctionList.DeleteAuctionEntry(id);
 
-                return Response.AsRedirect("/");
+                return Response.AsRedirect("/simpleAuction/");
             };
 
             Get["/newEntry"] = _ =>
@@ -67,7 +67,7 @@ namespace NancyAuction.Modules
                     AuctionList.AddAuctionEntry(entry);
                 }
 
-                return Response.AsRedirect("/");
+                return Response.AsRedirect("/simpleAuction/");
             };
 
         }
