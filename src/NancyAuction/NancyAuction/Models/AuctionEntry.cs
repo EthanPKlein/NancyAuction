@@ -20,6 +20,27 @@ namespace NancyAuction.Models
             this.IsOpen = false;
         }
 
+        public bool BidIsEligible(float bidAmount)
+        {
+
+            if (bidAmount < this.AuctionItem.StartingBid)
+            {
+                return false;
+            }
+
+            if (bidAmount > this.AuctionItem.AutoBuy)
+            {
+                return false;
+            }
+
+            if (this.BidHistory.HasBids() && bidAmount <= this.BidHistory.GetTopBid().BidAmount)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void AddBid(string bidderName, float bidAmount, DateTime timestamp)
         {
             if (!this.BidHistory.HasBids() && bidAmount < this.AuctionItem.StartingBid)

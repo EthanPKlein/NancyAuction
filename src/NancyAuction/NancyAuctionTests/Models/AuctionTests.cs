@@ -92,5 +92,43 @@ namespace NancyAuctionTests
             AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
             Assert.Throws<Exception>(() => auctionEntry.AddBid(posterName1, 20));
         }
+
+        [Test]
+        public void BidIsValidWhenAboveMinimumPriceAndNoPastBids()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            Assert.That(auctionEntry.BidIsEligible(50), Is.True);
+        }
+
+        [Test]
+        public void BidIsValidWhenAboveMinimumPriceAndHasPastBids()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            auctionEntry.AddBid("Bob", 55);
+
+            Assert.That(auctionEntry.BidIsEligible(60), Is.True);
+        }
+
+        [Test]
+        public void BidIsInvalidWhenBelowMinimumPrice()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            Assert.That(auctionEntry.BidIsEligible(20), Is.False);
+        }
+
+        [Test]
+        public void BidIsInvalidWhenAboveMaximumPrice()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            Assert.That(auctionEntry.BidIsEligible(999), Is.False);
+        }
+
+        [Test]
+        public void BidIsInvalidWhenBelowLastBid()
+        {
+            AuctionEntry auctionEntry = new AuctionEntry(auctionItem);
+            auctionEntry.AddBid("Bob", 55);
+            Assert.That(auctionEntry.BidIsEligible(50), Is.False);
+        }
     }
 }

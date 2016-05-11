@@ -31,7 +31,7 @@ namespace NancyAuction.Modules
                 var newBid = this.Bind<NewBid>();
                 var auctionEntry = AuctionList.GetAuctionEntry(newBid.AuctionEntryId);
 
-                if (newBid.BidAmount > auctionEntry.BidHistory.GetTopBid().BidAmount)
+                if (auctionEntry.BidIsEligible(newBid.BidAmount))
                 {
                     AuctionList.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
                 }
@@ -61,12 +61,12 @@ namespace NancyAuction.Modules
                 {
                     AuctionEntry entry = new AuctionEntry(a)
                     {
-                        Id = (int)(new Random().NextDouble()*1000),
+                        Id = (int)(new Random().NextDouble() * 1000),
                         IsOpen = true
                     };
                     AuctionList.AddAuctionEntry(entry);
                 }
-                
+
                 var data = AuctionList.GetAuctionEntries();
                 return View["home.sshtml", data]; // TODO: redirect to home?
             };
