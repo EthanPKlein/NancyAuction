@@ -29,6 +29,17 @@ namespace NancyAuction.Modules
                 return data;
             };
 
+            Get["/newEntry"] = _ =>
+            {
+                return View["newEntry.sshtml"];
+            };
+
+            Post["/newEntry"] = _ =>
+            {
+                var data = AuctionList.GetAuctionEntries();
+                return View["home.sshtml", data];
+            };
+
         }
 
     }

@@ -107,10 +107,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\scripts\postHelper.js" />
     <Content Include="Views\home.sshtml" />
     <Content Include="Views\master.sshtml" />
     <Content Include="Views\footer.sshtml" />
     <Content Include="Views\bidlisting.sshtml" />
+    <Content Include="Views\newEntry.sshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

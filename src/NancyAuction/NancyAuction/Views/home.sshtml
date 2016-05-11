@@ -27,4 +27,6 @@
 
 @EndEach
 
+<a href="/newEntry/">Post New Auction Entry</a>
+
 @EndSection
