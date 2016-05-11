@@ -15,7 +15,18 @@
 		@Partial['bidlisting.sshtml', @Current.BidHistory.Bids];
 		
 		@If.IsOpen
-			<a href="/bid/@Current.Id" class="btn btn-primary" role="button">Bid Now!</a>
+			<form action="/bid/" method="post">
+
+				<p>Your name: <input type="text" name="BidderName" value = "" />
+
+				Your bid: <input type="number" name="BidAmount" value = "" />
+
+				<input type="hidden" name="AuctionEntryId" value="@Current.Id">
+
+				<input class="btn btn-primary" type="submit" value="Bid Now!" /></p>
+
+			</form>
+
 		@EndIf
 
 		@IfNot.IsOpen

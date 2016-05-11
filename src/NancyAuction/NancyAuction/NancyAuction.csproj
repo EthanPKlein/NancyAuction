@@ -133,6 +133,7 @@
     <Compile Include="Models\AuctionItem.cs" />
     <Compile Include="Models\Bid.cs" />
     <Compile Include="Models\BidHistory.cs" />
+    <Compile Include="Models\NewBid.cs" />
     <Compile Include="Modules\AuctionModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

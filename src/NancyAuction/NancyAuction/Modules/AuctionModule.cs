@@ -26,10 +26,15 @@ namespace NancyAuction.Modules
                 return View["auctionEntryDetail.sshtml", data];
             };
 
-            Get["/bid/{id}"] = parameters =>
+            Post["/bid/"] = parameters =>
             {
-                int id = parameters.id;
-                AuctionList.AddBidToAuctionEntry(id);
+                var newBid = this.Bind<NewBid>();
+                var auctionEntry = AuctionList.GetAuctionEntry(newBid.AuctionEntryId);
+
+                if (newBid.BidAmount > auctionEntry.BidHistory.GetTopBid().BidAmount)
+                {
+                    AuctionList.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
+                }
 
                 var data = AuctionList.GetAuctionEntries(); // redirect?
                 return View["home.sshtml", data];
