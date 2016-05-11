@@ -17,9 +17,9 @@
 		@If.IsOpen
 			<form action="/bid/" method="post">
 
-				<p>Your name: <input type="text" name="BidderName" value = "" />
+				<p>Your name: <input type="text" name="BidderName" value = "" required />
 
-				Your bid: <input type="number" name="BidAmount" value = "" />
+				Your bid: $<input type="number" name="BidAmount" value = "" required max="@Current.AuctionItem.AutoBuy" min="@Current.AuctionItem.StartingBid" />
 
 				<input type="hidden" name="AuctionEntryId" value="@Current.Id">
 
