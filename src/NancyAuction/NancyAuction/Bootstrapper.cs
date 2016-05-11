@@ -11,7 +11,7 @@ namespace NancyAuction
     {
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            // import some default auction items
+            // seed some default auction items
             AuctionItem item = new AuctionItem
             {
                 AutoBuy = 100,
