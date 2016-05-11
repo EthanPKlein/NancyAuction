@@ -1,0 +1,21 @@
+﻿@Master['master.sshtml']
+
+@Section['Content']
+<h1>Auction Entry Detail</h1>
+
+<h3>@Model.AuctionItem.Name  <a class="btn btn-danger btn-sm" href="/entries/delete/@Model.Id">Delete</a></h3>
+
+		<p>@Model.AuctionItem.Description.  <i>Starting bid:  <b>$@Model.AuctionItem.StartingBid</b>.  Autobuy at <b>$@Model.AuctionItem.AutoBuy</b> </i></p>
+
+		<p>Bid History:</p>
+		@Partial['bidlisting.sshtml', @Model.BidHistory.Bids];
+		
+		@If.IsOpen
+			<p class="text-success">Auction is active.</p>
+		@EndIf
+
+		@IfNot.IsOpen
+			<span class='alert alert-danger'>SOLD!</span>
+		@EndIf
+
+@EndSection

@@ -18,9 +18,21 @@ namespace NancyAuction.Data
             return _auctionEntries;
         }
 
-        public static AuctionEntry GetAuctionEntry(int Id)
+        public static void AddBidToAuctionEntry(int id)
         {
-            return _auctionEntries.First(i => i.Id == Id);
+            var auctionItem = _auctionEntries.First(i => i.Id == id);
+            var newBidAmount = auctionItem.BidHistory.GetTopBid().BidAmount + 5;
+            auctionItem.AddBid("Anonymous", newBidAmount);
+        }
+
+        public static AuctionEntry GetAuctionEntry(int id)
+        {
+            return _auctionEntries.First(i => i.Id == id);
+        }
+
+        public static void DeleteAuctionEntry(int id)
+        {
+            _auctionEntries = _auctionEntries.Where(i => i.Id != id).ToList();
         }
 
     }

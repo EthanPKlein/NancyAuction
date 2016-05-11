@@ -19,17 +19,28 @@ namespace NancyAuction.Modules
                 return View["home.sshtml", data];
             };
 
-            Get["/entries"] = _ =>
-            {
-                var data = AuctionList.GetAuctionEntries();
-                return data;
-            };
-
             Get["/entries/{id}"] = parameters =>
             {
                 int id = parameters.id;
                 var data = AuctionList.GetAuctionEntry(id);
-                return data;
+                return View["auctionEntryDetail.sshtml", data];
+            };
+
+            Get["/bid/{id}"] = parameters =>
+            {
+                int id = parameters.id;
+                AuctionList.AddBidToAuctionEntry(id);
+
+                var data = AuctionList.GetAuctionEntries(); // redirect?
+                return View["home.sshtml", data];
+            };
+
+            Get["/entries/delete/{id}"] = parameters =>
+            {
+                int id = parameters.id;
+                AuctionList.DeleteAuctionEntry(id);
+                var data = AuctionList.GetAuctionEntries(); // redirect?
+                return View["home.sshtml", data];
             };
 
             Get["/newEntry"] = _ =>
