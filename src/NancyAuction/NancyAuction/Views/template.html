@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/Content/auction.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/Content/scripts/postHelper.js"></script>
+</head>
+<body>
+    <title>Nancy Auction API</title>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Nancy Auction</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/simpleAuction/">Home</a></li>
+                    <li><a href="newEntry/">Post Listing</a></li>
+                    <li><a href="/api/template/">API</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <h1>Nancy API!</h1>
+
+    <div id="response" style="border: 1px solid black; border-radius: 5px; background-color: lightgray; padding: 10px;">Response goes here!</div>
+
+    <button onclick="getAuctionEntry()">Get Auction for </button>
+    <input id="auctionId" type="text" placeholder="3, 7, 42" />
+
+
+    <script>
+
+        function getAuctionEntry() {
+
+            var id = $("#auctionId").val();
+
+            $.get({
+                url: '/api/entry/' + id,
+
+                success: success,
+                dataType: 'json'
+            });
+        }
+
+        function success(data) {
+            console.log(data);
+            $("#response").html(JSON.stringify(data));
+        }
+
+    </script>
+
+</body>
+
+
+</html>
