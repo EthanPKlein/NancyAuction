@@ -15,25 +15,25 @@ namespace NancyAuction.Modules
 
             Get["/"] = _ =>
             {
-                var data = AuctionList.GetAuctionEntries();
+                var data = Repository.GetAuctionEntries();
                 return View["home.sshtml", data];
             };
 
             Get["/entries/{id}"] = parameters =>
             {
                 int id = parameters.id;
-                var data = AuctionList.GetAuctionEntry(id);
+                var data = Repository.GetAuctionEntry(id);
                 return View["auctionEntryDetail.sshtml", data];
             };
 
             Post["/bid/"] = parameters =>
             {
                 var newBid = this.Bind<NewBid>();
-                var auctionEntry = AuctionList.GetAuctionEntry(newBid.AuctionEntryId);
+                var auctionEntry = Repository.GetAuctionEntry(newBid.AuctionEntryId);
 
                 if (auctionEntry.BidIsEligible(newBid.BidAmount))
                 {
-                    AuctionList.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
+                    Repository.AddBidToAuctionEntry(newBid.AuctionEntryId, newBid.BidderName, newBid.BidAmount);
                 }
 
                 return Response.AsRedirect("/simpleAuction/");
@@ -43,7 +43,7 @@ namespace NancyAuction.Modules
             Get["/entries/delete/{id}"] = parameters =>
             {
                 int id = parameters.id;
-                AuctionList.DeleteAuctionEntry(id);
+                Repository.DeleteAuctionEntry(id);
 
                 return Response.AsRedirect("/simpleAuction/");
             };
@@ -64,7 +64,7 @@ namespace NancyAuction.Modules
                         Id = (int)(new Random().NextDouble() * 1000),
                         IsOpen = true
                     };
-                    AuctionList.AddAuctionEntry(entry);
+                    Repository.AddAuctionEntry(entry);
                 }
 
                 return Response.AsRedirect("/simpleAuction/");

@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Data\AuctionList.cs" />
+    <Compile Include="Data\Repository.cs" />
     <Compile Include="Models\AuctionEntry.cs" />
     <Compile Include="Models\AuctionItem.cs" />
     <Compile Include="Models\Bid.cs" />

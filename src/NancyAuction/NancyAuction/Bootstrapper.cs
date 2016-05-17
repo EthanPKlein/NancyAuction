@@ -31,7 +31,7 @@ namespace NancyAuction
             entry.AddBid("Gary", 30, DateTime.UtcNow.AddHours(-2));
             entry.AddBid("Susan", 35, DateTime.UtcNow.AddHours(-1));
 
-            AuctionList.AddAuctionEntry(entry);
+            Repository.AddAuctionEntry(entry);
 
             // import some default auction items
             AuctionItem item2 = new AuctionItem
@@ -52,7 +52,7 @@ namespace NancyAuction
 
             entry2.AddBid("Laura", 12);
 
-            AuctionList.AddAuctionEntry(entry2);
+            Repository.AddAuctionEntry(entry2);
 
             // import some default auction items
             AuctionItem item3 = new AuctionItem
@@ -78,7 +78,7 @@ namespace NancyAuction
             entry3.AddBid("Greedo", 350, DateTime.UtcNow.AddHours(-4));
             entry3.AddBid("Darth Vader", 500, DateTime.UtcNow.AddHours(-1));
 
-            AuctionList.AddAuctionEntry(entry3);
+            Repository.AddAuctionEntry(entry3);
         }
     }
 }

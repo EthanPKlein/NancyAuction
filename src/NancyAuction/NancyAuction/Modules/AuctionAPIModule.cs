@@ -18,7 +18,7 @@ namespace NancyAuction.Modules
             Get["/entry/{id}"] = parameters =>
             {
                 int id = parameters.id;
-                var output = AuctionList.GetAuctionEntry(id);
+                var output = Repository.GetAuctionEntry(id);
 
                 return Negotiate
                     .WithStatusCode(HttpStatusCode.OK)
@@ -28,12 +28,29 @@ namespace NancyAuction.Modules
 
             Get["/entries"] = _ =>
             {
-                var output = AuctionList.GetAuctionEntries();
+                var output = Repository.GetAuctionEntries();
 
                 return Negotiate
                     .WithStatusCode(HttpStatusCode.OK)
                     .WithContentType("applicaton/json")
                     .WithModel(output);
+            };
+
+            Delete["/entry/{id}"] = parameters =>
+            {
+                int id = parameters.id;
+                try
+                {
+                    Repository.DeleteAuctionEntry(id);
+                }
+                catch
+                {
+                    return Negotiate
+                    .WithStatusCode(HttpStatusCode.InternalServerError);
+                }
+
+                return Negotiate
+                    .WithStatusCode(HttpStatusCode.OK);
             };
         }
     }

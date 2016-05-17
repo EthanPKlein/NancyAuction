@@ -23,7 +23,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/simpleAuction/">Home</a></li>
-                    <li><a href="newEntry/">Post Listing</a></li>
+                    <li><a href="/simpleAuction/newEntry/">Post Listing</a></li>
                     <li><a href="/api/template/">API</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -41,17 +41,20 @@
     <br /><br />
 
     <button onclick="getAuctionEntry()">Get Auction for </button>
-    <input id="auctionId" type="text" placeholder="3, 7, 42" />
+    <input id="getId" type="text" placeholder="3, 7, 42" />
 
     <br /><br />
 
+    <button onclick="deleteAuctionEntry()">Delete Auction for </button>
+    <input id="deleteId" type="text" placeholder="3, 7, 42" />
 
+    <br /><br />
 
     <script>
 
         function getAuctionEntry() {
 
-            var id = $("#auctionId").val();
+            var id = $("#getId").val();
 
             $.get({
                 url: '/api/entry/' + id,
@@ -68,9 +71,37 @@
             });
         }
 
+        function deleteAuctionEntry() {
+            var id = $("#deleteId").val();
+
+            $.ajax({
+                url: '/api/entry/' + id,
+                type: 'DELETE',
+                complete: function (responseTxt, statusTxt, xhr) {
+                    //console.log(responseTxt);
+                    //console.log(statusTxt);
+                    //console.log(xhr);
+
+                    console.log(responseTxt.status);
+
+                    if (responseTxt.status === 200) {
+                        $("#response").html('auction entry deleted!');
+                    }
+
+                    if (responseTxt.status === 500) {
+                        $("#response").html('Server Error!');
+                    }
+
+                }
+            });
+        }
+
         function success(data) {
-            console.log(data);
             $("#response").html(JSON.stringify(data));
+        }
+
+        function deleteSuccess(id) {
+            $("#response").html('auction entry with id ' + id + ' deleted!');
         }
 
     </script>

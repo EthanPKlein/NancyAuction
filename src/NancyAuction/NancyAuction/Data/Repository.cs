@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NancyAuction.Models;
 
 namespace NancyAuction.Data
 {
-    public static class AuctionList
+    public static class Repository
     {
         private static List<AuctionEntry> _auctionEntries = new List<AuctionEntry>();
 
@@ -32,6 +33,13 @@ namespace NancyAuction.Data
 
         public static void DeleteAuctionEntry(int id)
         {
+            var auctionItem = _auctionEntries.FirstOrDefault(i => i.Id == id);
+
+            if (auctionItem == null)
+            {
+                throw new ArgumentNullException("Auction item does not exist!");
+            }
+
             _auctionEntries = _auctionEntries.Where(i => i.Id != id).ToList();
         }
 
