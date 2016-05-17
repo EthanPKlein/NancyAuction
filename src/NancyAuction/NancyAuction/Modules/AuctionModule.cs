@@ -70,6 +70,11 @@ namespace NancyAuction.Modules
                 return Response.AsRedirect("/simpleAuction/");
             };
 
+            Get["/unitTestPass"] = _ =>
+            {
+                return HttpStatusCode.OK;
+            };
+
         }
 
     }
