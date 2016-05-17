@@ -32,10 +32,19 @@
 
     <h1>Nancy API!</h1>
 
-    <div id="response" style="border: 1px solid black; border-radius: 5px; background-color: lightgray; padding: 10px;">Response goes here!</div>
+    <div id="response" style="border: 1px solid black; border-radius: 5px; background-color: #b0c4de; padding: 10px;">Response goes here!</div>
+
+    <br /><br />
+
+    <button onclick="getAllAuctionEntries()">Get All Auction Entries</button>
+
+    <br /><br />
 
     <button onclick="getAuctionEntry()">Get Auction for </button>
     <input id="auctionId" type="text" placeholder="3, 7, 42" />
+
+    <br /><br />
+
 
 
     <script>
@@ -46,7 +55,14 @@
 
             $.get({
                 url: '/api/entry/' + id,
+                success: success,
+                dataType: 'json'
+            });
+        }
 
+        function getAllAuctionEntries() {
+            $.get({
+                url: '/api/entries/',
                 success: success,
                 dataType: 'json'
             });

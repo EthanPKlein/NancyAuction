@@ -25,6 +25,16 @@ namespace NancyAuction.Modules
                     .WithContentType("applicaton/json")
                     .WithModel(output);
             };
+
+            Get["/entries"] = _ =>
+            {
+                var output = AuctionList.GetAuctionEntries();
+
+                return Negotiate
+                    .WithStatusCode(HttpStatusCode.OK)
+                    .WithContentType("applicaton/json")
+                    .WithModel(output);
+            };
         }
     }
 }
